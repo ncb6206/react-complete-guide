@@ -1,43 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from 'react';
 
-import NewExpense from "./component/NewExpense/NewExpense";
-import Expenses from "./component/Expenses/Expenses";
-
-const DUMMY_EXPENSES = [
-  {
-    id: "e1",
-    title: "Toilet Paper",
-    amount: 94.12,
-    date: new Date(2020, 7, 14),
-  },
-  { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-  {
-    id: "e3",
-    title: "Car Insurance",
-    amount: 294.67,
-    date: new Date(2021, 2, 28),
-  },
-  {
-    id: "e4",
-    title: "New Desk (Wooden)",
-    amount: 450,
-    date: new Date(2021, 5, 12),
-  },
-];
+import './App.css';
+import DemoList from './components/Demo/DemoList';
+import Button from './components/UI/Button/Button';
 
 function App() {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [listTitle, setListTitle] = useState('My List');
 
-  const addExpenseHandler = (expense) => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
-  };
+  const changeTitleHandler = useCallback(() => {
+    setListTitle('New Title');
+  }, []);
+
+  const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
 
   return (
-    <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} />
+    <div className="app">
+      <DemoList title={listTitle} items={listItems} />
+      <Button onClick={changeTitleHandler}>Change List Title</Button>
     </div>
   );
 }
