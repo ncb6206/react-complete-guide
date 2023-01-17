@@ -1,5 +1,5 @@
 import { Fragment, useRef, useState } from "react";
-import { Prompt } from "react-router-dom";
+//import { Prompt } from "react-router-dom";
 
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -32,12 +32,13 @@ const QuoteForm = (props) => {
 
   return (
     <Fragment>
-      <Prompt
+      {/* Prompt is currently not supported yet by v6 프롬프트는 v6에서는 아직 지원안되서 v5를 많이 쓴다고 함*/}
+      {/* <Prompt
         when={isEntering}
         message={(location) =>
           "Are you sure you want to leave? All your entered data will be lost!"
         }
-      />
+      /> */}
       <Card>
         <form onFocus={formFocusedHandler} className={classes.form} onSubmit={submitFormHandler}>
           {props.isLoading && (
