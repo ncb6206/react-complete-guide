@@ -1,19 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
-import AddUser from "./components/Users/AddUser";
-import UsersList from "./components/Users/UsersList";
+import Login from "./components/Login/Login";
+import Home from "./components/Home/Home";
+import MainHeader from "./components/MainHeader/MainHeader";
+import AuthContext from "./store/auth-context";
 
 function App() {
-  const [usersList, setUsersList] = useState([]);
-
-  const addUserHandler = (uName, uAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
+  const ctx = useContext(AuthContext);
 
   const deleteItemHandler = goalId => {
     setCourseGoals(prevGoals => {
@@ -33,10 +26,13 @@ function App() {
   }
 
   return (
-    <div>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
-    </div>
+    <React.Fragment>
+      <MainHeader />
+      <main>
+        {!ctx.isLoggedIn && <Login />}
+        {ctx.isLoggedIn && <Home />}
+      </main>
+    </React.Fragment>
   );
 };
 
