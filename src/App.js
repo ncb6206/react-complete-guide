@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useMemo } from 'react';
 
 import './App.css';
@@ -13,12 +14,25 @@ function App() {
 
   const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
 
+
+  let content = (
+    <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+  );
+
+  if (courseGoals.length > 0) {
+    content = (
+      <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler} />
+    );
+  }
+
   return (
+
     <div className="app">
       <DemoList title={listTitle} items={listItems} />
       <Button onClick={changeTitleHandler}>Change List Title</Button>
     </div>
+
   );
-}
+};
 
 export default App;

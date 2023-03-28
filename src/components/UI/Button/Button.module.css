@@ -1,4 +1,5 @@
 .button {
+
   font: inherit;
   border: 1px solid #4f005f;
   background: #4f005f;
@@ -13,6 +14,7 @@
 .button:active {
   background: #741188;
   border-color: #741188;
+
 }
 
 .button:focus {
@@ -27,4 +29,5 @@ button:active:disabled {
   border-color: #ccc;
   color: #666666;
   cursor: not-allowed;
+
 }
